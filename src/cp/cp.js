@@ -2,7 +2,6 @@ import { spawn } from "child_process";
 import path from "path";
 
 const spawnChildProcess = async (args) => {
-
   const scriptPath = path.join("src", "cp", "files", "script.js");
 
   const child = spawn("node", [scriptPath, ...args], {
@@ -13,7 +12,7 @@ const spawnChildProcess = async (args) => {
   child.stdout.pipe(process.stdout);
 
   child.on("error", (error) => {
-    console.error("Ошибка при запуске дочернего процесса:", error);
+    console.error("Error when starting a child process:", error);
   });
 
   child.on("close", (code) => {
@@ -22,4 +21,3 @@ const spawnChildProcess = async (args) => {
 };
 
 spawnChildProcess(["arg1", "arg2"]);
-  
